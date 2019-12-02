@@ -650,7 +650,7 @@ class DefectDojoAPI(object):
         test_id, user_id, impact, active, verified, mitigation, references=None, build=None, line=0,
         file_path=None, static_finding="False", dynamic_finding="False", false_p="False",
         duplicate="False",  out_of_scope="False", under_review="False", under_defect_review="False",
-        numerical_severity=None, last_reviewed=str(datetime.now())):
+        numerical_severity=None, last_reviewed=str(datetime.now()), severity_justification=None):
 
         """Creates a finding with the given properties.
 
@@ -697,7 +697,8 @@ class DefectDojoAPI(object):
             'under_review' : under_review,
             'under_defect_review' : under_defect_review,
             'numerical_severity' : numerical_severity,
-            'last_reviewed' : last_reviewed
+            'last_reviewed' : last_reviewed,
+            'severity_justification': severity_justification
         }
 
         return self._request('POST', 'findings/', data=data)
