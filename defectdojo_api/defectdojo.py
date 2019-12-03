@@ -368,6 +368,27 @@ class DefectDojoAPI(object):
         return self._request('PUT', 'products/' + str(product_id) + '/', data=data)
 
 
+    ###### Test_type API #######
+    def list_test_types(self, name=None, limit=20):
+        """Retrieves all the tests.
+        :param name: Search by test_type name.
+        :param limit: Number of records to return.
+        """
+
+        params  = {}
+        if name:
+            params['name'] = name
+
+        return self._request('GET', 'test_types/', params)
+
+    def create_test_type(self, name):
+        '''Creates a test type with given name. Returns id.'''
+        data = {
+            'name': name
+        }
+        return self._request('POST', 'test_types/', data=data)
+
+
     ###### Test API #######
     def list_tests(self, name=None, engagement_in=None, limit=10000000):
         """Retrieves all the tests.
@@ -416,13 +437,6 @@ class DefectDojoAPI(object):
         }
 
         return self._request('POST', 'tests/', data=data)
-
-    def create_test_type(self, name):
-        ''' Crea un test type '''
-        data = {
-            'name': name
-        }
-        return self._request('POST', 'test_type/add', data=data)
 
     def set_test(self, test_id, engagement_id=None, test_type=None, environment=None,
         target_start=None, target_end=None, percent_complete=None, lead=None):
