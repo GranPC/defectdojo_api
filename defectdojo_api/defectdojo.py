@@ -664,7 +664,7 @@ class DefectDojoAPI(object):
         test_id, user_id, impact, active, verified, mitigation, references=None, build=None, line=0,
         file_path=None, static_finding="False", dynamic_finding="False", false_p="False",
         duplicate="False",  out_of_scope="False", under_review="False", under_defect_review="False",
-        numerical_severity=None, last_reviewed=str(datetime.now()), severity_justification=None):
+        numerical_severity=None, last_reviewed=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"), severity_justification=None):
 
         """Creates a finding with the given properties.
 
@@ -717,9 +717,9 @@ class DefectDojoAPI(object):
 
         return self._request('POST', 'findings/', data=data)
 
-    def set_finding(self, finding_id, product_id, engagement_id, test_id, last_reviewed=str(datetime.now()), title=None, description=None, severity=None,
-        cwe=None, date=None, user_id=None, impact=None, active=None, mitigated=None, verified=None,
-        mitigation=None, references=None, build=None, false_p=None, severity_justification=None):
+    def set_finding(self, finding_id, product_id, engagement_id, test_id, last_reviewed=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        title=None, description=None, severity=None, cwe=None, date=None, user_id=None, impact=None, active=None, mitigated=None,
+        verified=None, mitigation=None, references=None, build=None, false_p=None, severity_justification=None):
 
         """Updates a finding with the given properties.
 
