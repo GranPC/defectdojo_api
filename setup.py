@@ -16,10 +16,14 @@ with open('README.rst', 'r') as f:
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
+version = version.split('.')
+version[0] = str(int(version[0]) + 1000)
+version = '.'.join(version)
+
 setup(
     name='defectdojo_api',
     packages=['defectdojo_api'],
-    version=version + 'vP3r1c0',
+    version=version,
     description='An API wrapper for DefectDojo. - unnofficial',
     long_description=readme,
     author='Aaron Weaver, modified  by Pedro Galindo',
